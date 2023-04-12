@@ -251,50 +251,108 @@ This will not include a tutorial on creating a VM in Azure since I already creat
 2. Filter By SSH
 </p>
 
+- Now we will observe and analyze traffic in SSH.
+- Filter Wireshark to SSH only.
 
+<p>
+<img src="https://i.imgur.com/6RaZBMY.png" height="80%" width="80%" />
+</p>
 
+- Open PowerShell again and let's SSH to VM2 using private IP Address.
 
+<p>
+<img src="https://i.imgur.com/yV5z3Qr.png" height="80%" width="80%" />
+</p>
 
+- Notice after hitting <ins>Enter</ins> in our PowerShell Command, Wireshark detected a traffic in SSH.
 
+<p>
+<img src="https://i.imgur.com/kAbvBIW.png" height="80%" width="80%" />
+</p>
 
+- Type <ins>Yes</ins> and hit Enter.
 
+<p>
+<img src="https://i.imgur.com/6mn3ope.png" height="80%" width="80%" />
+</p>
 
+- After we hit Enter, Wireshark detected more traffic in SSH. The PowerShell tells us that we are connected to VM2 via SSH.
 
+<p>
+<img src="https://i.imgur.com/EIVAy52.png" height="80%" width="80%" />
+</p>
+
+- These are all the traffics that Wireshark detected.
+
+<p>
+<img src="https://i.imgur.com/2Mr8GWU.png" height="80%" width="80%" />
+</p>
+
+- More traffic will be detected once we used some of the terminal commands in the SSH.
+
+<p>
+<img src="https://i.imgur.com/tmBkR2y.png" height="80%" width="80%" />
+</p>
+
+<p>
+<img src="https://i.imgur.com/bTJ1zdH.png" height="80%" width="80%" />
+</p>
+
+<p>
+3. Filter by DHCP
+</p>
+
+- Type <ins>exit</ins> in PowerShell to exit in SSH.
+- Filter wireshark to DHCP.
+- We will renew our IP and observe Wireshark.
+
+<p>
+<img src="https://i.imgur.com/Wo9DTGr.png" height="80%" width="80%" />
+</p>
+
+- Press Enter.
+- We were expecting to see a broadcast address since we renewed our IP Address but in this case it automatically gave us an IP Address. DHCP is a protocol that assigns you a new IP Address automatically.
+- As you probably guessed, Wireshark will detect a DHCP traffic after we pressed Enter key.
+
+<p>
+<img src="https://i.imgur.com/wmhVBHp.png" height="80%" width="80%" />
+</p>
 
 
 
 <p>
-<img src="" height="80%" width="80%" />
+3. Filter by DNS
+</p>
+
+- Now let's filter by DNS. Set the filter to DNS in wireshark. DNS is an IP Address converted to readable format for humans since it is easier to memorize Domain Names rather than IP Addresses.
+- Open PowerShell and we will use <ins>nslookup</ins> command to observe DNS traffic in wireshark.
+- Press Enter.
+
+<p>
+<img src="https://i.imgur.com/5nXL70d.png" height="80%" width="80%" />
+</p>
+
+- PowerShell gave us the IP Address of google.
+
+<p>
+<img src="https://i.imgur.com/9UCkfHk.png" height="80%" width="80%" />
+</p>
+
+- Observing the traffic at wireshark, it gave us a lot of traffic and all of these traffic are being used by google and our network which were detected by Wireshark.
+
+<p>
+<img src="https://i.imgur.com/57i8Ipr.png" height="80%" width="80%" />
 </p>
 
 <p>
-<img src="" height="80%" width="80%" />
+4. Filter by RDP
 </p>
 
-<p>
-<img src="" height="80%" width="80%" />
-</p>
+- Now for our final observation, we will filter Wireshark to RDP or Remote Desktop Protocol, it uses port 3389 so we will use <ins>tcp.port == 3389</ins> to filter RDP traffic only.
+- Once we filter Wireshark to RDP, Wireshark is showing a lot of traffics and constantly updating since we are using a VM, every keystroke, mouse movement is also transmitting in the traffic.
 
 <p>
-<img src="" height="80%" width="80%" />
+<img src="https://i.imgur.com/8qqrh1r.png" height="80%" width="80%" />
 </p>
 
-<p>
-<img src="" height="80%" width="80%" />
-</p>
-
-<p>
-<img src="" height="80%" width="80%" />
-</p>
-
-<p>
-<img src="" height="80%" width="80%" />
-</p>
-
-<p>
-<img src="" height="80%" width="80%" />
-</p>
-
-<p>
-<img src="" height="80%" width="80%" />
-</p>
+<h4>This concludes the observation and analysis of network traffic, I hope you learned something new ☺️</h4>
