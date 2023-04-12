@@ -8,7 +8,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <h2>READ ME BEFORE STARTING</h2>
 
 <p>
-This will not include a tutorial on creating a VM in Azure since I already created a tutorial in the previous repositories, refer to my previous repositories if you want to learn how to create VMs. This will only focus on Azure Network Protocols and observe Network Traffic ✌️.
+This will not include a tutorial on creating a VM in Azure since I already created a tutorial in the previous repositories, refer to my previous repositories if you want to learn how to create VMs. This will only focus on Azure Network Protocols and observe Network Traffic ✌️. Before we start this lab, make sure you create 2 VMs, one for windows and one for ubuntu.
 </p>
 
 <h2>Environments and Technologies Used</h2>
@@ -149,75 +149,119 @@ This will not include a tutorial on creating a VM in Azure since I already creat
 
 <h2>Actions and Observations</h2>
 
+<p>
+1. Filter By ICMP
+</p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- You will notice that there are a lot of traffics showing in our network, let's filter it so we can only observe ICMP. Do these steps to filter the traffic.
 
 <p>
-<img src="" height="80%" width="80%" />
+<img src="https://i.imgur.com/R2NlOUH.png" height="80%" width="80%" />
+</p>
+  
+- You will notice that all the traffics are filtered and there are not traffics showing in wireshark.
+- Now we will navigate to <ins>portal.azure.com</ins> and find VM2's private IP address and ping it to observe the ICMP traffic. Ping is a command used to test network connection.
+- Click VM2.
+
+<p>
+<img src="https://i.imgur.com/CDAbFCy.png" height="80%" width="80%" />
+</p>
+
+- Copy the <ins>Private IP Address</ins>. We will ping this IP Address.
+
+<p>
+<img src="https://i.imgur.com/wjAbmWN.png" height="80%" width="80%" />
+</p>
+
+- Open Windows PowerShell and ping VM2's Private IP Address.
+
+<p>
+<img src="https://i.imgur.com/aYeZ7Z2.png" height="80%" width="80%" />
+</p>
+
+- As you probably noticed, wireshark detected ICMP traffic after we ping the Private IP Address of VM2.
+- Now our Wireshark looks like this, VM1 is sending request to VM2, VM2 is replying to VM1's request, meaning our network is working since both of them are communicating.
+
+<p>
+<img src="https://i.imgur.com/caw437R.png" height="80%" width="80%" />
+</p>
+
+- Now let's ping VM2 continuously using the <ins>-t</ins> command and let's observe what Microsoft Azure's NSG does when we block ICMP traffic.
+
+<p>
+<img src="https://i.imgur.com/Tk85Jr8.png" height="80%" width="80%" />
+</p>
+
+- Follow these steps to block ICMP traffic in VM2.
+
+<p>
+<img src="https://i.imgur.com/gs8SZ3d.png" height="80%" width="80%" />
+</p>
+
+- Select VM2-nsg.
+
+<p>
+<img src="https://i.imgur.com/axwwWVc.png" height="80%" width="80%" />
 </p>
 
 <p>
-<img src="" height="80%" width="80%" />
+<img src="https://i.imgur.com/SPi7WW8.png" height="80%" width="80%" />
 </p>
 
 <p>
-<img src="" height="80%" width="80%" />
+<img src="https://i.imgur.com/iiqZFCH.png" height="80%" width="80%" />
+</p>
+
+- You might be wondering why we chose 200 as the Priority, we can choose any number as long as it goes before 300 since ssh's priority is set to 300 and we don't want ssh to bypass our ICMP blocking rule.
+- Now we go back to our VM1 and check the ping status.
+- As you can see, it says request timed out, meaning VM2-nsg is blocking ICMP traffic. NSG acts like a firewall, it controls and monitors outgoing and incoming traffics. Look at our wireshark also, it only says request since VM2 is not replying due to blocking of ICMP.
+
+<p>
+<img src="https://i.imgur.com/bEdVN0P.png" height="80%" width="80%" />
 </p>
 
 <p>
-<img src="" height="80%" width="80%" />
+<img src="https://i.imgur.com/T6QRPrR.png" height="80%" width="80%" />
+</p>
+
+- Now let's allow ICMP traffic again to VM2-nsg and observe what will happen. Follow these steps to enable ICMP traffic.
+
+<p>
+<img src="https://i.imgur.com/XJ0CfJX.png" height="80%" width="80%" />
 </p>
 
 <p>
-<img src="" height="80%" width="80%" />
+<img src="https://i.imgur.com/Dp6Lf9M.png" height="80%" width="80%" />
+</p>
+
+- Now let's go back to our VM1 and observe our ping and wireshark.
+- You will see that VM2 is replying again to VM1's request.
+
+<p>
+<img src="https://i.imgur.com/wG24prx.png" height="80%" width="80%" />
 </p>
 
 <p>
-<img src="" height="80%" width="80%" />
+<img src="https://i.imgur.com/HJ8tHci.png" height="80%" width="80%" />
 </p>
 
-<p>
-<img src="" height="80%" width="80%" />
-</p>
+- Press Ctrl+C to end continuous ping.
 
 <p>
-<img src="" height="80%" width="80%" />
+2. Filter By SSH
 </p>
 
-<p>
-<img src="" height="80%" width="80%" />
-</p>
 
-<p>
-<img src="" height="80%" width="80%" />
-</p>
 
-<p>
-<img src="" height="80%" width="80%" />
-</p>
 
-<p>
-<img src="" height="80%" width="80%" />
-</p>
 
-<p>
-<img src="" height="80%" width="80%" />
-</p>
+
+
+
+
+
+
+
 
 <p>
 <img src="" height="80%" width="80%" />
