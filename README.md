@@ -245,7 +245,7 @@ This will not include a tutorial on creating a VM in Azure since I already creat
 <img src="https://i.imgur.com/HJ8tHci.png" height="80%" width="80%" />
 </p>
 
-- Press Ctrl+C to end continuous ping.
+- Go back to PowerShell and press Ctrl+C to end continuous ping.
 
 <p>
 2. Filter By SSH
