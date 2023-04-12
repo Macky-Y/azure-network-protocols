@@ -130,8 +130,21 @@ This will not include a tutorial on creating a VM in Azure since I already creat
 <img src="https://i.imgur.com/7PoUJ7b.png" height="80%" width="80%" />
 </p>
 
+<p>
+12. Now open <ins>Wireshark</ins>. You will be see this page. Follow the steps in the picture.
+</p>
 
+<p>
+<img src="https://i.imgur.com/GVZFPJ3.png" height="80%" width="80%" />
+</p>
 
+<p>
+13. You will now see this screen.
+</p>
+
+<p>
+<img src="https://i.imgur.com/eL4DXRA.png" height="80%" width="80%" />
+</p>
 
 
 <h2>Actions and Observations</h2>
@@ -152,9 +165,7 @@ This will not include a tutorial on creating a VM in Azure since I already creat
 
 
 
-<p>
-<img src="" height="80%" width="80%" />
-</p>
+
 
 <p>
 <img src="" height="80%" width="80%" />
